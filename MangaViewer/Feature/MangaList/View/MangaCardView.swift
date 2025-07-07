@@ -1,0 +1,66 @@
+//
+//  MangaCardView.swift
+//  MangaViewer
+//
+//  Created by Sahil Ramteke on 08/07/25.
+//
+
+import Factory
+import SwiftUI
+
+struct MangaCardView: View {
+  @InjectedObservable(\.coverViewModel)
+  private var viewModel
+
+  let manga: Manga
+
+  var body: some View {
+    VStack(alignment: .leading, spacing: 12) {
+      AsyncImage(url: viewModel.coverImageUrl) { image in
+        image
+          .resizable()
+          .scaledToFit()
+      } placeholder: {
+        Image(systemName: "photo.fill")
+          .resizable()
+          .scaledToFit()
+      }
+      Text(manga.attributes.title.values.first ?? "")
+        .bold()
+    }
+    .task {
+      viewModel
+        .fetchCoverURL(
+          mangaID: manga.id,
+          coverID: manga.relationships
+            .first(where: { $0.type == "cover_art" })?.id ?? ""
+        )
+    }
+  }
+}
+
+#Preview {
+  MangaCardView(
+    manga: Manga(
+      id: "85a99758-de39-471e-9f6d-800547f53d0a",
+      type: "manga",
+      attributes: MangaAttribute(
+        title: ["en": "Test"],
+        altTitles: [[:]],
+        description: [:],
+        links: [:],
+        originalLanguage: "",
+        lastVolume: nil,
+        lastChapter: nil,
+        status: "",
+        contentRating: "",
+        createdAt: "",
+        updatedAt: "",
+        version: 1,
+        availableTranslatedLanguages: [],
+        latestUploadedChapter: nil,
+      ),
+      relationships: [Relationship(id: "450eab69-8fc8-46a3-842c-1890c4bc7f87", type: "cover_art")]
+    )
+  )
+}

@@ -5,11 +5,12 @@
 //  Created by Sahil Ramteke on 07/07/25.
 //
 
-import SwiftUI
 import SwiftData
+import SwiftUI
 
 struct ContentView: View {
-    @Environment(\.modelContext) private var modelContext
+    @Environment(\.modelContext)
+    private var modelContext
     @Query private var items: [Item]
 
     var body: some View {
