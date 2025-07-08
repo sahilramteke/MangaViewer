@@ -8,11 +8,11 @@
 import Factory
 
 extension Container {
-  var mangaListService: Factory<MangaListService> {
+  var mangaListService: Factory<any MangaListService> {
     self { MangaListServiceImp() }
   }
 
-  var coverService: Factory<CoverImageService> {
+  var coverService: Factory<any CoverImageService> {
     self { CoverImageServiceImpl() }
   }
 

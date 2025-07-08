@@ -1,0 +1,193 @@
+{
+  "result": "ok",
+  "response": "entity",
+  "data": {
+    "id": "450eab69-8fc8-46a3-842c-1890c4bc7f87",
+    "type": "cover_art",
+    "attributes": {
+      "description": "",
+      "volume": "25",
+      "fileName": "77c8a05f-8895-4f8b-ab3a-31df2dba030d.jpg",
+      "locale": "ja",
+      "createdAt": "2025-07-04T06:28:23+00:00",
+      "updatedAt": "2025-07-04T06:28:23+00:00",
+      "version": 1
+    },
+    "relationships": [
+      {
+        "id": "85a99758-de39-471e-9f6d-800547f53d0a",
+        "type": "manga",
+        "attributes": {
+          "title": {
+            "en": "Tougen Anki"
+          },
+          "altTitles": [
+            {
+              "ja": "桃源暗鬼"
+            },
+            {
+              "en": "Tougen Anki: Legend of the Cursed Blood"
+            },
+            {
+              "fr": "Tôgen Anki : La légende du sang maudit"
+            }
+          ],
+          "description": {
+            "en": "Ichinose Shiki, an inheritor of the blood of Oni had lived out his entire childhood oblivious to this fact. However, when an unknown man comes rushing into his home in attempts to assassinate him, his foster father finally reveals the truth. In a world where Oni and Momotarou have never been able to coexist, join Ichinose in his struggle for power and unifying the two races!",
+            "fr": "Une légende raconte qu'un enfant extrêmement fort serait né d'une pêche et baptisé Momotarô. Lorsqu'il devint assez grand et puissant, ce valeureux guerrier aurait chassé les Oni qui pillaient les villages. Ce héros n'est pas une légende... Tout comme les Oni...\nLeurs descendants sont encore parmi nous et la bataille opposait le clan Momotarô au clan des Oni fait rage ! Shiki est un jeune garçon, au sang chaud. Alors qu'il vient de se faire renvoyer de l'école, il prend conscience qu'il possède du sang de Oni. Le clan Momotarô le cherche et veut l'éliminer. la quête de liberté de Shiki et des autres Oni commence...",
+            "ja": "「お前は鬼の血を継いでいる……」　主人公・四季は自らの血に棲む者と出逢うことになる。",
+            "pt-br": "Ichinose Shiki, um herdeiro do sangue de Oni, viveu toda a sua infância alheio a esse fato. No entanto, quando um homem desconhecido entra correndo em sua casa na tentativa de assassiná-lo, seu pai adotivo finalmente revela a verdade. Em um mundo onde Oni e Momotarou nunca puderam coexistir, junte-se a Ichinose em sua luta pelo poder e unificando as duas raças!"
+          },
+          "isLocked": false,
+          "links": {
+            "al": "119968",
+            "ap": "tougen-anki",
+            "bw": "series/267197/list",
+            "kt": "59155",
+            "mu": "168526",
+            "amz": "https://www.amazon.co.jp/dp/B08RJ15R8R",
+            "ebj": "https://ebookjapan.yahoo.co.jp/books/607916",
+            "mal": "127436",
+            "raw": "http://arc.akitashoten.co.jp/comics/tougenanki/1",
+            "engtl": "https://yenpress.com/series/tougen-anki-legend-of-the-cursed-blood"
+          },
+          "originalLanguage": "ja",
+          "lastVolume": "",
+          "lastChapter": "",
+          "publicationDemographic": "shounen",
+          "status": "ongoing",
+          "year": 2020,
+          "contentRating": "safe",
+          "tags": [
+            {
+              "id": "391b0423-d847-456f-aff0-8b0cfc03066b",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Action"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "39730448-9a5f-48a2-85b0-a70db87b1233",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Demons"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "b29d6a3d-1569-4e7a-8caf-7557bc92cd5d",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Gore"
+                },
+                "description": [],
+                "group": "content",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "b9af3a63-f058-46de-a9a0-e0c13906197a",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Drama"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "cdc58593-87dd-415e-bbc0-2ec27bf404cc",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Fantasy"
+                },
+                "description": [],
+                "group": "genre",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "da2d50ca-3018-4cc0-ac7a-6b7d472a29ea",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Delinquents"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "dd1f77c5-dea9-4e2b-97ae-224af09caf99",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Monster Girls"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            },
+            {
+              "id": "eabc5b4c-6aff-42f3-b657-3e90cbd00b75",
+              "type": "tag",
+              "attributes": {
+                "name": {
+                  "en": "Supernatural"
+                },
+                "description": [],
+                "group": "theme",
+                "version": 1
+              },
+              "relationships": []
+            }
+          ],
+          "state": "published",
+          "chapterNumbersResetOnNewVolume": false,
+          "createdAt": "2020-07-29T06:27:29+00:00",
+          "updatedAt": "2025-07-04T06:28:24+00:00",
+          "version": 47,
+          "availableTranslatedLanguages": [
+            "es-la",
+            "pl",
+            "fr",
+            "ar",
+            "pt-br",
+            "en",
+            "ru",
+            "tr",
+            "it",
+            "ms"
+          ],
+          "latestUploadedChapter": "326c98bb-8408-44e2-9e7c-7f1c89e55c71"
+        }
+      },
+      {
+        "id": "f73d34f6-f678-4f8b-9dff-5c759d5fc767",
+        "type": "user"
+      }
+    ]
+  }
+}

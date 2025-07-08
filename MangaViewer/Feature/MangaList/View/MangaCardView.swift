@@ -24,6 +24,7 @@ struct MangaCardView: View {
         Image(systemName: "photo.fill")
           .resizable()
           .scaledToFit()
+          .accessibilityLabel("placeholder_image")
       }
       Text(manga.attributes.title.values.first ?? "")
         .bold()

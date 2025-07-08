@@ -35,9 +35,33 @@
 		41E51DBB2E1BC67600F212BC /* MangaViewerUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MangaViewerUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		41499B312E1C667C00B8B4AE /* Exceptions for "MangaViewer" folder in "MangaViewer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Feature/MangaList/Mock/MangaCoverMock.json,
+			);
+			target = 41E51DA12E1BC67500F212BC /* MangaViewer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		41499B322E1C667C00B8B4AE /* Exceptions for "MangaViewer" folder in "Compile Sources" phase from "MangaViewer" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = 41E51D9E2E1BC67500F212BC /* Sources */;
+			membershipExceptions = (
+				Feature/MangaList/Mock/MangaCoverMock.json,
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		41E51DA42E1BC67500F212BC /* MangaViewer */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				41499B312E1C667C00B8B4AE /* Exceptions for "MangaViewer" folder in "MangaViewer" target */,
+				41499B322E1C667C00B8B4AE /* Exceptions for "MangaViewer" folder in "Compile Sources" phase from "MangaViewer" target */,
+			);
 			path = MangaViewer;
 			sourceTree = "<group>";
 		};
