@@ -28,7 +28,6 @@ struct CoverImageServiceImpl: CoverImageService {
   func fetchCoverImage(mangaID: String, coverID: String) -> AnyPublisher<Data, APIError> {
     let key = "\(mangaID)-\(coverID)"
     guard let cachedData = imageCache.get(forKey: key) else {
-      print("### image network call")
       return fetchCoverURL(coverID: coverID)
         .flatMap { coverContainer in
           request(.fetchCoverImage(mangaID: mangaID, fileName: coverContainer.data.attributes.fileName))
@@ -40,7 +39,6 @@ struct CoverImageServiceImpl: CoverImageService {
         .eraseToAnyPublisher()
     }
 
-    print("### image from cache")
     return Future<Data, APIError> { promise in
       promise(.success(cachedData))
     }

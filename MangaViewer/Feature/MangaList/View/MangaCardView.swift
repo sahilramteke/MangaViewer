@@ -15,22 +15,31 @@ struct MangaCardView: View {
   let manga: Manga
 
   var body: some View {
-    VStack(alignment: .leading, spacing: 12) {
+    LazyVStack(alignment: .leading, spacing: 12) {
       if let data = viewModel.imageData,
           let uiImage = UIImage(data: data) {
         Image(uiImage: uiImage)
           .resizable()
           .scaledToFit()
+          .clipShape(RoundedRectangle(cornerRadius: 8))
           .accessibilityLabel("\(manga.id)_cover_art")
       } else {
         Image(systemName: "photo.fill")
           .resizable()
           .scaledToFit()
+          .clipShape(RoundedRectangle(cornerRadius: 8))
           .accessibilityLabel("placeholder_image")
       }
       Text(manga.attributes.title.values.first ?? "")
         .bold()
     }
+    .padding()
+    .background(
+      RoundedRectangle(cornerRadius: 8)
+        .stroke(Color.borderColor, lineWidth: 1)
+        .fill(Color.backgroundColor)
+    )
+    .padding(.horizontal, 16)
     .task {
       viewModel
         .fetchImage(
@@ -40,6 +49,11 @@ struct MangaCardView: View {
         )
     }
   }
+}
+
+extension Color {
+  static let backgroundColor = Color(red: 0.98, green: 0.97, blue: 0.95)
+  static let borderColor = Color(red: 0.86, green: 0.77, blue: 0.70)
 }
 
 #Preview {

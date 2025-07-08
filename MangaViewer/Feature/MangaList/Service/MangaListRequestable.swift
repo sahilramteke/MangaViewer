@@ -6,7 +6,8 @@
 //
 
 enum MangaListRequestable: URLRequestable {
-  case fetchManga
+  case fetchManga(limit: Int, offset: Int)
+//  case fetchMoreManga(String)
 
   var method: HTTPMethod { .get }
   var baseURL: String { NetworkConstants.baseURLString }
@@ -18,12 +19,14 @@ enum MangaListRequestable: URLRequestable {
   }
   var queryItems: [String: String]? {
     switch self {
-    case .fetchManga:
+    case let .fetchManga(limit, offset):
       return [
-        "limit": "10",
+        "limit": String(limit),
+        "offset": String(offset),
         "availableTranslatedLanguage[]": "en",
         "order[latestUploadedChapter]": "desc",
         "order[rating]": "desc",
+        "contentRating[]": "safe",
       ]
     }
   }

@@ -17,19 +17,40 @@ final class MangaListViewModel {
   @Injected(\.mangaListService)
   private var service
   @ObservationIgnored
-  var cancellables = Set<AnyCancellable>()
+  private var cancellables = Set<AnyCancellable>()
 
   var mangaList: [Manga] = []
 
-  func fetchMangaList() {
-    print("MangaListViewModel fetchMangaList called")
-    service.fetchMangaList()
-      .map { $0.data }
-      .sink { _ in
+  var limit = 0
+  var offset = 0
+  var total = 0
+  var isLoadingMore = false
+
+  func fetchMangaList(limit: Int = 100, offset: Int = 0) {
+    print("fetchMangaList called")
+    service.fetchMangaList(limit: limit, offset: offset)
+      .sink { result in
+        switch result {
+        case .finished:
+          print("Finished fetchMangaList")
+        case let .failure(error):
+          print("Error fetchMangaList: \(error)")
+        }
         // no-op
-      } receiveValue: {
-        self.mangaList = $0
+      } receiveValue: { container in
+        self.mangaList += container.data
+        self.limit = container.limit
+        self.offset = container.offset
+        self.total = container.total
+        self.isLoadingMore = false
+        print("### offset: \(self.offset) - manga count: \(self.mangaList.count)")
       }
       .store(in: &cancellables)
+  }
+
+  func loadMore() {
+    print("loadMore called")
+    isLoadingMore = true
+    fetchMangaList(offset: offset + limit)
   }
 }

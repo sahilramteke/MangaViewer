@@ -13,12 +13,30 @@ struct MangaListView: View {
   private var model
 
   var body: some View {
-    List(model.mangaList, id: \.id) { item in
-      MangaCardView(manga: item)
-    }
-    .listStyle(.plain)
-    .task {
-      model.fetchMangaList()
+    VStack {
+      List(model.mangaList, id: \.id) { item in
+        MangaCardView(manga: item)
+          .listRowSeparator(.hidden)
+          .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+          .onAppear {
+            if model.mangaList.last?.id == item.id && !model.isLoadingMore {
+              print("reached last item: ", model.isLoadingMore, item.id)
+              model.loadMore()
+            }
+          }
+        if model.isLoadingMore && model.mangaList.last?.id == item.id {
+          ProgressView()
+            .controlSize(.large)
+            .frame(maxWidth: .infinity, maxHeight: .infinity)
+            .listRowSeparator(.hidden)
+            .id(UUID())
+        }
+      }
+      .listRowSpacing(16)
+      .listStyle(.plain)
+      .task {
+        model.fetchMangaList()
+      }
     }
   }
 }
