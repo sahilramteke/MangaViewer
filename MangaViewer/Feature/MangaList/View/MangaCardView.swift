@@ -16,11 +16,13 @@ struct MangaCardView: View {
 
   var body: some View {
     VStack(alignment: .leading, spacing: 12) {
-      AsyncImage(url: viewModel.coverImageUrl) { image in
-        image
+      if let data = viewModel.imageData,
+          let uiImage = UIImage(data: data) {
+        Image(uiImage: uiImage)
           .resizable()
           .scaledToFit()
-      } placeholder: {
+          .accessibilityLabel("\(manga.id)_cover_art")
+      } else {
         Image(systemName: "photo.fill")
           .resizable()
           .scaledToFit()
@@ -31,7 +33,7 @@ struct MangaCardView: View {
     }
     .task {
       viewModel
-        .fetchCoverURL(
+        .fetchImage(
           mangaID: manga.id,
           coverID: manga.relationships
             .first(where: { $0.type == "cover_art" })?.id ?? ""

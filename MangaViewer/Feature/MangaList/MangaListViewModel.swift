@@ -25,16 +25,10 @@ final class MangaListViewModel {
     print("MangaListViewModel fetchMangaList called")
     service.fetchMangaList()
       .map { $0.data }
-      .sink { completion in
-        switch completion {
-        case .failure(let error):
-          print("Error fetchMangaList: ", error)
-        case .finished:
-          print("Finished fetchMangaList")
-        }
-      } receiveValue: { data in
-        print("fetchMangaList data")
-        self.mangaList = data
+      .sink { _ in
+        // no-op
+      } receiveValue: {
+        self.mangaList = $0
       }
       .store(in: &cancellables)
   }

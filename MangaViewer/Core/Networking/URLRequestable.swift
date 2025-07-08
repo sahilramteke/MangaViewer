@@ -25,7 +25,7 @@ enum HTTPMethod: String {
 
 enum NetworkConstants {
   static let baseURLString = "https://api.mangadex.org/"
-//  static let imageBaseURLString = "https://uploads.mangadex.org/"
+  static let imageBaseURLString = "https://uploads.mangadex.org/"
 }
 
 extension URLRequestable {

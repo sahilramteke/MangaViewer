@@ -6,14 +6,18 @@
 //
 
 import Combine
+import Factory
 import Foundation
 
 protocol CoverImageService: APIRequestable {
-  func fetchCoverURL(coverID: String) -> AnyPublisher<CoverContainer, APIError>
+  func fetchCoverImage(mangaID: String, coverID: String) -> AnyPublisher<Data, APIError>
 }
 
 struct CoverImageServiceImpl: CoverImageService {
   typealias Requestable = CoverImageRequestable
+
+  @Injected(\.imageCache)
+  private var imageCache
 
   var session: URLSession
 
@@ -21,7 +25,29 @@ struct CoverImageServiceImpl: CoverImageService {
     self.session = session
   }
 
-  func fetchCoverURL(coverID: String) -> AnyPublisher<CoverContainer, APIError> {
+  func fetchCoverImage(mangaID: String, coverID: String) -> AnyPublisher<Data, APIError> {
+    let key = "\(mangaID)-\(coverID)"
+    guard let cachedData = imageCache.get(forKey: key) else {
+      print("### image network call")
+      return fetchCoverURL(coverID: coverID)
+        .flatMap { coverContainer in
+          request(.fetchCoverImage(mangaID: mangaID, fileName: coverContainer.data.attributes.fileName))
+            .map { data in
+              imageCache.put(data, forKey: key)
+              return data
+            }
+        }
+        .eraseToAnyPublisher()
+    }
+
+    print("### image from cache")
+    return Future<Data, APIError> { promise in
+      promise(.success(cachedData))
+    }
+    .eraseToAnyPublisher()
+  }
+
+  private func fetchCoverURL(coverID: String) -> AnyPublisher<CoverContainer, APIError> {
     request(.fetchCover(coverID: coverID))
   }
 }
