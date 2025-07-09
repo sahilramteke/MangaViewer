@@ -51,11 +51,6 @@ struct MangaCardView: View {
   }
 }
 
-extension Color {
-  static let backgroundColor = Color(red: 0.98, green: 0.97, blue: 0.95)
-  static let borderColor = Color(red: 0.86, green: 0.77, blue: 0.70)
-}
-
 #Preview {
   MangaCardView(
     manga: Manga(

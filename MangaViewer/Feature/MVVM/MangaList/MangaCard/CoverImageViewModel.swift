@@ -19,7 +19,6 @@ final class CoverImageViewModel {
   @ObservationIgnored
   private var cancellables = Set<AnyCancellable>()
 
-  var coverImageUrl: URL?
   var imageData: Data?
 
   func fetchImage(mangaID: String, coverID: String) {

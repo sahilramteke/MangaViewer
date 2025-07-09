@@ -5,15 +5,22 @@
 //  Created by Sahil Ramteke on 07/07/25.
 //
 
+import ComposableArchitecture
 import SwiftData
 import SwiftUI
 
 @main
 struct MangaViewerApp: App {
-  @State var path = NavigationPath()
   var body: some Scene {
     WindowGroup {
-        MangaListView()
+      // MVVM Entry
+      MangaListView()
+
+//      // TCA Entry
+//      TCAMangaListView(store: Store(
+//        initialState: MangaListFeature.State(),
+//        reducer: { MangaListFeature()._printChanges() }
+//      ))
     }
   }
 }

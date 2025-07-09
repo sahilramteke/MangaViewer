@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		415D81E62E1EAAEB0002C32B /* ComposableArchitecture in Frameworks */ = {isa = PBXBuildFile; productRef = 415D81E52E1EAAEB0002C32B /* ComposableArchitecture */; };
 		41E51DE52E1BE1C200F212BC /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = 41E51DE42E1BE1C200F212BC /* Factory */; };
 		41E51DE72E1BE1C200F212BC /* FactoryKit in Frameworks */ = {isa = PBXBuildFile; productRef = 41E51DE62E1BE1C200F212BC /* FactoryKit */; };
 		41E51DE92E1BE1C200F212BC /* FactoryTesting in Frameworks */ = {isa = PBXBuildFile; productRef = 41E51DE82E1BE1C200F212BC /* FactoryTesting */; };
@@ -60,6 +61,7 @@
 			files = (
 				41E51DE72E1BE1C200F212BC /* FactoryKit in Frameworks */,
 				41E51DE52E1BE1C200F212BC /* Factory in Frameworks */,
+				415D81E62E1EAAEB0002C32B /* ComposableArchitecture in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -124,6 +126,7 @@
 			packageProductDependencies = (
 				41E51DE42E1BE1C200F212BC /* Factory */,
 				41E51DE62E1BE1C200F212BC /* FactoryKit */,
+				415D81E52E1EAAEB0002C32B /* ComposableArchitecture */,
 			);
 			productName = MangaViewer;
 			productReference = 41E51DA22E1BC67500F212BC /* MangaViewer.app */;
@@ -184,7 +187,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1640;
-				LastUpgradeCheck = 1640;
+				LastUpgradeCheck = 2600;
 				TargetAttributes = {
 					41E51DA12E1BC67500F212BC = {
 						CreatedOnToolsVersion = 16.4;
@@ -211,6 +214,7 @@
 			packageReferences = (
 				41E51DD32E1BD16A00F212BC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */,
 				41E51DE32E1BE1C200F212BC /* XCRemoteSwiftPackageReference "Factory" */,
+				415D81E42E1EAAEB0002C32B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 41E51DA32E1BC67500F212BC /* Products */;
@@ -365,6 +369,7 @@
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -421,6 +426,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -592,6 +598,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		415D81E42E1EAAEB0002C32B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/pointfreeco/swift-composable-architecture";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.20.2;
+			};
+		};
 		41E51DD32E1BD16A00F212BC /* XCRemoteSwiftPackageReference "SwiftLintPlugins" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SimplyDanny/SwiftLintPlugins.git";
@@ -611,6 +625,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		415D81E52E1EAAEB0002C32B /* ComposableArchitecture */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 415D81E42E1EAAEB0002C32B /* XCRemoteSwiftPackageReference "swift-composable-architecture" */;
+			productName = ComposableArchitecture;
+		};
 		41E51DE42E1BE1C200F212BC /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 41E51DE32E1BE1C200F212BC /* XCRemoteSwiftPackageReference "Factory" */;
