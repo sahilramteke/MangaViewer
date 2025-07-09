@@ -7,7 +7,6 @@
 
 enum MangaListRequestable: URLRequestable {
   case fetchManga(limit: Int, offset: Int)
-//  case fetchMoreManga(String)
 
   var method: HTTPMethod { .get }
   var baseURL: String { NetworkConstants.baseURLString }
