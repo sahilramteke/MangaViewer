@@ -6,8 +6,6 @@ included:
 excluded:
   - MangaViewer/Core/Cache # We have Objc code here, remove in future.
 
-
-
 # Enabled/disabled rules
 analyzer_rules:
   - unused_declaration

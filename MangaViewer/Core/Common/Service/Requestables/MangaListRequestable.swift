@@ -7,6 +7,7 @@
 
 enum MangaListRequestable: URLRequestable {
   case fetchManga(limit: Int, offset: Int)
+  case fetchMangaFeed(mangaID: String)
 
   var method: HTTPMethod { .get }
   var baseURL: String { NetworkConstants.baseURLString }
@@ -14,6 +15,8 @@ enum MangaListRequestable: URLRequestable {
     switch self {
     case .fetchManga:
       return "manga"
+    case let .fetchMangaFeed(mangaID):
+      return "manga/\(mangaID)/feed"
     }
   }
   var queryItems: [String: String] {
@@ -26,6 +29,15 @@ enum MangaListRequestable: URLRequestable {
         "order[latestUploadedChapter]": "desc",
         "order[rating]": "desc",
         "contentRating[]": "safe",
+      ]
+    case .fetchMangaFeed:
+      return [
+        "limit": "500",
+        "translatedLanguage[]": "en",
+        "contentRating[]": "safe",
+        "order[volume]": "asc",
+        "order[chapter]": "asc",
+        "includeUnavailable": "0",
       ]
     }
   }

@@ -11,7 +11,7 @@ import SwiftUI
 struct MangaListView: View {
   @InjectedObservable(\.mangaListViewModel)
   private var model
-
+  
   var body: some View {
     VStack {
       List(model.mangaList, id: \.id) { item in
@@ -24,6 +24,9 @@ struct MangaListView: View {
               model.loadMore()
             }
           }
+          .onTapGesture {
+            model.updateDetailsViewPresentation(true, mangaID: item.id)
+          }
         if model.isLoadingMore && model.mangaList.last?.id == item.id {
           ProgressView()
             .controlSize(.large)
@@ -34,10 +37,20 @@ struct MangaListView: View {
       }
       .listRowSpacing(16)
       .listStyle(.plain)
-      .task {
-        model.fetchMangaList()
-      }
     }
+    .task {
+      model.fetchMangaList()
+    }
+    .fullScreenCover(
+      isPresented: $model.isDetailsViewPresented,
+      onDismiss: {
+        model.updateDetailsViewPresentation(false)
+      }, content: {
+        if let manga = model.presentedManga {
+          MangaDetailView(manga: manga)
+        }
+      }
+    )
   }
 }
 

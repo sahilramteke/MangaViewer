@@ -17,10 +17,10 @@ struct MangaViewerApp: App {
   var body: some Scene {
     WindowGroup {
       // MVVM Entry
-//      MangaListView()
+      MangaListView()
 
       // TCA Entry
-      TCAMangaListView(store: store)
+//      TCAMangaListView(store: store)
     }
   }
 }

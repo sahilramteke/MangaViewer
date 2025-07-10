@@ -9,7 +9,9 @@ import Combine
 import Foundation
 
 protocol MangaListService: APIRequestable {
-  func fetchMangaList(limit: Int, offset: Int) -> AnyPublisher<MangaList, APIError>
+  func fetchMangaList(limit: Int, offset: Int) -> AnyPublisher<ListContainer<Manga>, APIError>
+
+  func fetchMangaFeed(mangaID: String) -> AnyPublisher<ListContainer<Chapter>, APIError>
 }
 
 struct MangaListServiceImp: MangaListService {
@@ -21,7 +23,11 @@ struct MangaListServiceImp: MangaListService {
     self.session = session
   }
 
-  func fetchMangaList(limit: Int, offset: Int) -> AnyPublisher<MangaList, APIError> {
+  func fetchMangaList(limit: Int, offset: Int) -> AnyPublisher<ListContainer<Manga>, APIError> {
     request(.fetchManga(limit: limit, offset: offset))
+  }
+
+  func fetchMangaFeed(mangaID: String) -> AnyPublisher<ListContainer<Chapter>, APIError> {
+    request(.fetchMangaFeed(mangaID: mangaID))
   }
 }

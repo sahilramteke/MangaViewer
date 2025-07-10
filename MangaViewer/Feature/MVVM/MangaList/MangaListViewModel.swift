@@ -16,6 +16,7 @@ final class MangaListViewModel {
   @ObservationIgnored
   @Injected(\.mangaListService)
   private var service
+
   @ObservationIgnored
   private var cancellables = Set<AnyCancellable>()
 
@@ -25,6 +26,8 @@ final class MangaListViewModel {
   var offset = 0
   var total = 0
   var isLoadingMore = false
+  var isDetailsViewPresented = false
+  var presentedManga: Manga?
 
   func fetchMangaList(limit: Int = 100, offset: Int = 0) {
     print("fetchMangaList called")
@@ -52,5 +55,14 @@ final class MangaListViewModel {
     print("loadMore called")
     isLoadingMore = true
     fetchMangaList(offset: offset + limit)
+  }
+
+  func updateDetailsViewPresentation(_ isPresented: Bool, mangaID: String? = nil) {
+    isDetailsViewPresented = isPresented
+    if let mangaID {
+      presentedManga = isPresented ? mangaList.first { $0.id == mangaID } : nil
+    } else {
+      presentedManga = nil
+    }
   }
 }
