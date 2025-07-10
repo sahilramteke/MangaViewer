@@ -19,10 +19,7 @@ struct TCAMangaListView: View {
     VStack {
       List(store.mangaList, id: \.id) { item in
         TCAMangaCardView(
-          store: Store(
-            initialState: MangaCardFeature.State(),
-            reducer: { MangaCardFeature() }
-          ),
+          store: Store( initialState: MangaCardFeature.State()) { MangaCardFeature() },
           manga: item
         )
           .listRowSeparator(.hidden)

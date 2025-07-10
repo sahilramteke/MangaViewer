@@ -44,8 +44,7 @@ struct MangaCardView: View {
       viewModel
         .fetchImage(
           mangaID: manga.id,
-          coverID: manga.relationships
-            .first(where: { $0.type == "cover_art" })?.id ?? ""
+          coverID: manga.relationships.first { $0.type == "cover_art" }?.id ?? ""
         )
     }
   }

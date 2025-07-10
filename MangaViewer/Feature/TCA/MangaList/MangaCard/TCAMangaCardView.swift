@@ -47,9 +47,8 @@ struct TCAMangaCardView: View {
       store.send(
         .fetchImage(
           mangaID: manga.id,
-          coverID: manga
-            .relationships
-            .first(where: { $0.type == "cover_art" })?.id ?? "")
+          coverID: manga.relationships.first { $0.type == "cover_art" }?.id ?? ""
+        )
       )
     }
   }

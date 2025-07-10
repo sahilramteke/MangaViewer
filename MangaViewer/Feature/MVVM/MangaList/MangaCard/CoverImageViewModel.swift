@@ -16,6 +16,7 @@ final class CoverImageViewModel {
   @ObservationIgnored
   @Injected(\.coverService)
   private var service
+
   @ObservationIgnored
   private var cancellables = Set<AnyCancellable>()
 

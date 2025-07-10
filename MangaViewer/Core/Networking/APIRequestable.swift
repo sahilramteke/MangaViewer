@@ -19,9 +19,9 @@ protocol APIRequestable {
 
 enum APIError: Error {
   case defaultError(Int, String)
+  case invalidJSON(String)
   case invalidRequest
   case invalidResponse
-  case invalidJSON(String)
   case unknown
   case validation(String)
 

@@ -16,7 +16,7 @@ enum MangaListRequestable: URLRequestable {
       return "manga"
     }
   }
-  var queryItems: [String: String]? {
+  var queryItems: [String: String] {
     switch self {
     case let .fetchManga(limit, offset):
       return [
