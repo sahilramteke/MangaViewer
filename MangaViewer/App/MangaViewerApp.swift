@@ -6,21 +6,21 @@
 //
 
 import ComposableArchitecture
+import Factory
 import SwiftData
 import SwiftUI
 
 @main
 struct MangaViewerApp: App {
+  @Injected(\.mangaListStore) private var store
+
   var body: some Scene {
     WindowGroup {
       // MVVM Entry
-      MangaListView()
+//      MangaListView()
 
-//      // TCA Entry
-//      TCAMangaListView(store: Store(
-//        initialState: MangaListFeature.State(),
-//        reducer: { MangaListFeature()._printChanges() }
-//      ))
+      // TCA Entry
+      TCAMangaListView(store: store)
     }
   }
 }

@@ -33,7 +33,7 @@ struct MangaListFeature {
     Reduce { state, action in
       switch action {
       case let .updateMangaList(data, offset):
-        state.mangaList = data
+        state.mangaList += data
         state.offset = offset
         state.isLoadingMore = false
       case let .fetchManga(offset):
@@ -44,7 +44,12 @@ struct MangaListFeature {
             .catch { Just(.failed($0)) }
         }
       case .loadMore:
+        guard !state.isLoadingMore
+        else { return .none }
         state.isLoadingMore = true
+        return .run { [offset = state.offset, limit = state.limit] send in
+          await send(.fetchManga(offset: offset + limit))
+        }
       case .failed:
         break
       }

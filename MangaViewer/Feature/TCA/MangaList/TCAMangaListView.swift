@@ -6,6 +6,7 @@
 //
 
 import ComposableArchitecture
+import Factory
 import SwiftUI
 
 struct TCAMangaListView: View {
@@ -18,10 +19,9 @@ struct TCAMangaListView: View {
   var body: some View {
     VStack {
       List(store.mangaList, id: \.id) { item in
-        TCAMangaCardView(
-          store: Store( initialState: MangaCardFeature.State()) { MangaCardFeature() },
-          manga: item
-        )
+        @Injected(\.coverViewStore) var cardStore
+
+        TCAMangaCardView(store: cardStore, manga: item)
           .listRowSeparator(.hidden)
           .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
           .onAppear {

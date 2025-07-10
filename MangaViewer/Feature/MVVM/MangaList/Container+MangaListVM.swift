@@ -1,5 +1,5 @@
 //
-//  Container+ViewModel.swift
+//  Container+MangaListVM.swift
 //  MangaViewer
 //
 //  Created by Sahil Ramteke on 07/07/25.
