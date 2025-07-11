@@ -16,8 +16,7 @@ protocol CoverImageService: APIRequestable {
 struct CoverImageServiceImpl: CoverImageService {
   typealias Requestable = CoverImageRequestable
 
-  @Injected(\.imageCache)
-  private var imageCache
+  @Injected(\.imageCache) private var imageCache
 
   var session: URLSession
 

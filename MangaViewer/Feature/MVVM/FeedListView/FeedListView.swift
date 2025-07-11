@@ -28,6 +28,12 @@ struct FeedListView: View {
         .background(Color.backgroundColor13)
         .clipShape(RoundedRectangle(cornerRadius: 8))
         .listRowBackground(Color.backgroundColor12)
+        .onTapGesture {
+          viewModel.showReaderView(
+            chapterID: item.id,
+            chapterName: "Chapter \(item.attributes.chapter)"
+          )
+        }
       }
       .scrollContentBackground(.hidden)
     }
@@ -36,5 +42,12 @@ struct FeedListView: View {
     .task {
       viewModel.fetchMangaFeed(mangaID)
     }
+    .navigationDestination(for: FeedListRoute.self) { route in
+      switch route {
+      case let .readerView(chapterID, chapterName):
+        ReaderView(chapterID, chapterName)
+      }
+    }
+
   }
 }

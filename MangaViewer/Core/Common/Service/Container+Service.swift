@@ -15,4 +15,8 @@ extension Container {
   var coverService: Factory<any CoverImageService> {
     self { CoverImageServiceImpl() }
   }
+
+  var mangaImageService: Factory<any MangaImageService> {
+    self { MangaImageServiceImpl() }
+  }
 }

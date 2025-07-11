@@ -11,7 +11,7 @@ import Foundation
 import Observation
 
 enum FeedListRoute: Hashable {
-  case readerView
+  case readerView(_ chapterID: String, _ chapterName: String)
 }
 
 @MainActor
@@ -40,6 +40,10 @@ final class FeedListViewModel {
         self.chapters = container.data
       }
       .store(in: &cancellables)
+  }
+
+  func showReaderView(chapterID: String, chapterName: String) {
+    router.path.append(FeedListRoute.readerView(chapterID, chapterName))
   }
 }
 
