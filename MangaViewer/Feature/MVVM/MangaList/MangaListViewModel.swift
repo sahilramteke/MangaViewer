@@ -10,26 +10,25 @@ import Factory
 import Foundation
 import Observation
 
+enum MangaListRoute: Hashable {
+  case details(Manga)
+}
+
 @MainActor
 @Observable
 final class MangaListViewModel {
-  @ObservationIgnored
-  @Injected(\.mangaListService)
-  private var service
+  @Injected(\.mangaListService) @ObservationIgnored private var service
+  @Injected(\.router) @ObservationIgnored var router
 
-  @ObservationIgnored
-  private var cancellables = Set<AnyCancellable>()
+  @ObservationIgnored private var cancellables = Set<AnyCancellable>()
 
   var mangaList: [Manga] = []
-
   var limit = 0
   var offset = 0
   var total = 0
   var isLoadingMore = false
-  var isDetailsViewPresented = false
-  var presentedManga: Manga?
 
-  func fetchMangaList(limit: Int = 100, offset: Int = 0) {
+  func fetchMangaList(limit: Int = 10, offset: Int = 0) {
     print("fetchMangaList called")
     service.fetchMangaList(limit: limit, offset: offset)
       .sink { result in
@@ -57,12 +56,7 @@ final class MangaListViewModel {
     fetchMangaList(offset: offset + limit)
   }
 
-  func updateDetailsViewPresentation(_ isPresented: Bool, mangaID: String? = nil) {
-    isDetailsViewPresented = isPresented
-    if let mangaID {
-      presentedManga = isPresented ? mangaList.first { $0.id == mangaID } : nil
-    } else {
-      presentedManga = nil
-    }
+  func showManagaDetails(_ manga: Manga) {
+    router.path.append(MangaListRoute.details(manga))
   }
 }

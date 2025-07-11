@@ -11,8 +11,7 @@ import SwiftUI
 
 extension Container {
   var router: Factory<Router> {
-    self { Router() }
-      .singleton
+    self { Router() }.singleton
   }
 }
 

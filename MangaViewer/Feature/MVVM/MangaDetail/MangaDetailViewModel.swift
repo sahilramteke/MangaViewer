@@ -10,49 +10,32 @@ import Factory
 import Foundation
 import Observation
 
+enum DetailRoute: Hashable {
+  case feedList(_ mangaID: String)
+}
+
 @MainActor
 @Observable
 final class MangaDetailViewModel {
-  @ObservationIgnored
-  @Injected(\.mangaListService)
-  private var mangaService
+  @Injected(\.coverService) @ObservationIgnored private var service
+  @Injected(\.router) @ObservationIgnored var router
 
-  @ObservationIgnored
-  @Injected(\.coverService)
-  private var coverService
+  @ObservationIgnored private var cancellables = Set<AnyCancellable>()
 
-  @ObservationIgnored
-  private var cancellables = Set<AnyCancellable>()
-
-  var chapterList = [Chapter]()
   var imageData: Data?
 
-  func fetchMangaFeed(mangaID: String) {
-    print("fetchMangaFeed called")
-    mangaService.fetchMangaFeed(mangaID: mangaID)
-      .sink { result in
-        switch result {
-        case .finished:
-          print("Finished fetchMangaFeed")
-        case let .failure(error):
-          print("Error fetchMangaFeed: \(error)")
-        }
-        // no-op
-      } receiveValue: { container in
-        print("### chapterList: ", container.data)
-        self.chapterList = container.data
-      }
-      .store(in: &cancellables)
-  }
-
   func fetchImage(mangaID: String, coverID: String) {
-    coverService.fetchCoverImage(mangaID: mangaID, coverID: coverID)
+    service.fetchCoverImage(mangaID: mangaID, coverID: coverID)
       .sink { _ in
         // on-op
       } receiveValue: { data in
         self.imageData = data
       }
       .store(in: &cancellables)
+  }
+
+  func showFeedList(_ mangaID: String) {
+    router.path.append(DetailRoute.feedList(mangaID))
   }
 }
 
@@ -61,4 +44,3 @@ extension Container {
     self { @MainActor in MangaDetailViewModel() }
   }
 }
-

@@ -9,10 +9,7 @@ import Factory
 import SwiftUI
 
 struct MangaDetailView: View {
-  @InjectedObservable(\.mangaDetailViewModel)
-  private var viewModel
-
-  @Environment(\.dismiss) var dismiss
+  @InjectedObservable(\.mangaDetailViewModel) private var viewModel
 
   let manga: Manga
 
@@ -22,16 +19,6 @@ struct MangaDetailView: View {
 
   var body: some View {
     VStack {
-      HStack {
-        Spacer()
-        Image(systemName: "xmark")
-          .resizable()
-          .frame(width: 24, height: 24)
-          .padding(8)
-          .onTapGesture {
-            dismiss()
-          }
-      }
       ScrollView {
         VStack {
           VStack(alignment: .leading, spacing: 12) {
@@ -55,6 +42,17 @@ struct MangaDetailView: View {
               .font(.headline)
             Text(manga.attributes.description["en"] ?? "")
               .font(.subheadline)
+
+            HStack {
+              Text("Chapter List")
+                .font(.title2)
+                .padding()
+                .background(Color.backgroundColor11)
+                .clipShape(RoundedRectangle(cornerRadius: 8))
+                .onTapGesture {
+                  viewModel.showFeedList(manga.id)
+                }
+            }
           }
           .padding()
           .background(
@@ -65,34 +63,23 @@ struct MangaDetailView: View {
         }
         .frame(maxWidth: .infinity)
         .padding(.horizontal, 16)
-
-        VStack(alignment: .leading) {
-          Text("Chapter List")
-            .font(.title)
-            .padding()
-          ForEach(viewModel.chapterList, id: \.id) { item in
-            LazyVStack(alignment: .leading) {
-              Text("Chapter \(item.attributes.chapter)")
-                .font(.headline)
-                .padding()
-            }
-            .frame(maxWidth: .infinity)
-            .background(Color.backgroundColor)
-          }
-        }
-        .padding(.horizontal, 16)
-
       }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity)
     .background(Color.backgroundColor2)
+    .navigationTitle(manga.attributes.title.values.first ?? "Manga Details")
     .task {
       viewModel
         .fetchImage(
           mangaID: manga.id,
           coverID: manga.relationships.first { $0.type == "cover_art" }?.id ?? ""
         )
-      viewModel.fetchMangaFeed(mangaID: manga.id)
+    }
+    .navigationDestination(for: DetailRoute.self) { route in
+      switch route {
+      case let .feedList(mangaID):
+        FeedListView(mangaID)
+      }
     }
   }
 }

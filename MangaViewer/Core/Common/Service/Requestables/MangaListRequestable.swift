@@ -32,7 +32,7 @@ enum MangaListRequestable: URLRequestable {
       ]
     case .fetchMangaFeed:
       return [
-        "limit": "500",
+        "limit": "10",
         "translatedLanguage[]": "en",
         "contentRating[]": "safe",
         "order[volume]": "asc",

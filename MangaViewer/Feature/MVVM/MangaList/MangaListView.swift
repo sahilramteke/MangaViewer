@@ -9,9 +9,8 @@ import Factory
 import SwiftUI
 
 struct MangaListView: View {
-  @InjectedObservable(\.mangaListViewModel)
-  private var model
-  
+  @InjectedObservable(\.mangaListViewModel) private var model
+
   var body: some View {
     VStack {
       List(model.mangaList, id: \.id) { item in
@@ -25,7 +24,7 @@ struct MangaListView: View {
             }
           }
           .onTapGesture {
-            model.updateDetailsViewPresentation(true, mangaID: item.id)
+            model.showManagaDetails(item)
           }
         if model.isLoadingMore && model.mangaList.last?.id == item.id {
           ProgressView()
@@ -38,19 +37,16 @@ struct MangaListView: View {
       .listRowSpacing(16)
       .listStyle(.plain)
     }
+    .navigationTitle("Manga Viewer")
     .task {
       model.fetchMangaList()
     }
-    .fullScreenCover(
-      isPresented: $model.isDetailsViewPresented,
-      onDismiss: {
-        model.updateDetailsViewPresentation(false)
-      }, content: {
-        if let manga = model.presentedManga {
-          MangaDetailView(manga: manga)
-        }
+    .navigationDestination(for: MangaListRoute.self) { route in
+      switch route {
+      case let .details(manga):
+        MangaDetailView(manga: manga)
       }
-    )
+    }
   }
 }
 
