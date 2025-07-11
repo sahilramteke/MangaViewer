@@ -5,7 +5,16 @@
 //  Created by Sahil Ramteke on 08/07/25.
 //
 
+import Factory
 import Foundation
+
+extension Container {
+  var imageCache: Factory<ImageCache> {
+    self { ImageCache() }
+      .singleton
+  }
+}
+
 
 final class ImageCache {
   private let cache = NSCache<NSString, NSData>()
